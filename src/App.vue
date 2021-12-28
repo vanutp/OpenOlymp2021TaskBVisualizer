@@ -6,11 +6,16 @@
       v-for="(chunk, i) in history"
       :key="i"
     >
-      <Frame
+      <div
         v-for="(field, j) in chunk"
-        :field="field"
         :key="j"
-      />
+      >
+        <Frame
+          v-if="field !== 'error'"
+          :field="field"
+        />
+        <div v-if="field === 'error'">Error</div>
+      </div>
     </div>
     <div class="border-t-stone-600 border-t-8">
       <Frame
@@ -47,22 +52,34 @@ watch(width, (newWidth) => {
 });
 
 function simulate() {
-  const newHistoryChunk = [current.value.slice()];
+  const newHistoryChunk = [];
+  const errorValue = [current.value.slice(), "error"];
   let currentField = current.value.slice();
+  newHistoryChunk.push(currentField);
   let newField = currentField.slice();
   let ok = false;
+  let iterations = 0;
   while (!ok) {
     for (let i = 0; i < currentField.length; i++) {
       if (currentField[i] === 2) {
         newField[i] = 0;
         newField[i - 1]++;
         newField[i + 1]++;
+        if (i === 0 || i === currentField.length - 1) {
+          history.value.push(errorValue);
+          return;
+        }
       }
     }
     ok = newField.reduce((res, x) => res && x < 2, true);
     currentField = newField;
     newHistoryChunk.push(currentField);
     newField = currentField.slice();
+    iterations++;
+    if (iterations > 1000) {
+      history.value.push(errorValue);
+      return;
+    }
   }
   history.value.push(newHistoryChunk);
   current.value = newField;

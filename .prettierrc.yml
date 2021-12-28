@@ -1,1 +1,3 @@
 singleAttributePerLine: true
+semi: false
+singleQuote: true
