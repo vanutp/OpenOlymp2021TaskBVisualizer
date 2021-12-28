@@ -27,12 +27,20 @@
         :clickable="true"
       />
     </div>
-    <button
-      class="bg-green-800 rounded-md text-gray-50 p-2"
-      @click="simulate"
-    >
-      Simulate
-    </button>
+    <div class="flex flex-row gap-1">
+      <button
+        class="bg-green-800 rounded-md text-gray-50 p-2"
+        @click="simulate"
+      >
+        Simulate
+      </button>
+      <button
+        class="bg-red-500 rounded-md text-white p-2"
+        @click="history = []"
+      >
+        Clear
+      </button>
+    </div>
   </div>
 </template>
 
@@ -41,8 +49,8 @@ import { computed, ref, watch } from 'vue'
 import Frame from './Frame.vue'
 
 const history = ref([])
-const current = ref([0, 0, 0])
-const width = ref(3)
+const current = ref(new Array(15).fill(0))
+const width = ref(15)
 
 function onFieldClick(i, selected) {
   current.value[i] += selected ? 1 : -1
