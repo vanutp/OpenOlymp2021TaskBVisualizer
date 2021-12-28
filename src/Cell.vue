@@ -1,7 +1,7 @@
 <template>
   <div
     :class="
-      'w-32 h-32 border border-gray-400' +
+      'w-20 h-20 border border-gray-400' +
       (clickable ? ' cursor-pointer' : '') +
       (selected ? ' bg-blue-500' : '')
     "

@@ -2,22 +2,25 @@
   <div class="p-5 flex flex-col gap-3">
     <input v-model="width" />
     <div
-      class="border-t-stone-600 border-t-8 flex flex-col gap-1"
       v-for="(chunk, i) in history"
       :key="i"
     >
-      <div
-        v-for="(field, j) in chunk"
-        :key="j"
-      >
-        <Frame
-          v-if="field !== 'error'"
-          :field="field"
-        />
-        <div v-if="field === 'error'">Error</div>
+      <div class="bg-stone-600 w-full h-2 mb-3"></div>
+      <div class="flex flex-row flex-wrap gap-2">
+        <div
+          v-for="(field, j) in chunk"
+          :key="j"
+        >
+          <Frame
+            v-if="field !== 'error'"
+            :field="field"
+          />
+          <div v-if="field === 'error'">Error</div>
+        </div>
       </div>
     </div>
-    <div class="border-t-stone-600 border-t-8">
+    <div>
+      <div class="bg-stone-600 w-full h-2 mb-3"></div>
       <Frame
         :field="current"
         @field-click="onFieldClick"
