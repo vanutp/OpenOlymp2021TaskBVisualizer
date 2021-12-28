@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="'cell' + (clickable ? ' clickable' : '') + (selected ? ' selected' : '')"
+    :class="'w-32 h-32 border border-gray-400' + (clickable ? ' cursor-pointer' : '') + (selected ? ' bg-blue-500' : '')"
     @click="onClick"
   >
   </div>
@@ -19,17 +19,3 @@ function onClick() {
   }
 }
 </script>
-
-<style scoped>
-.selected {
-  background-color: #2196F3;
-}
-.clickable {
-  cursor: pointer;
-}
-.cell {
-  width: 100px;
-  height: 100px;
-  border: 1px solid #aaa;
-}
-</style>
