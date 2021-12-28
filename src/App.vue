@@ -35,10 +35,16 @@
         Simulate
       </button>
       <button
+        class="bg-blue-800 rounded-md text-white p-2"
+        @click="current = new Array(width).fill(0)"
+      >
+        Clear field
+      </button>
+      <button
         class="bg-red-500 rounded-md text-white p-2"
         @click="history = []"
       >
-        Clear
+        Clear history
       </button>
     </div>
   </div>
