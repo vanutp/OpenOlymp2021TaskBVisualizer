@@ -1,13 +1,15 @@
 <template>
   <div
-    :class="'w-32 h-32 border border-gray-400' + (clickable ? ' cursor-pointer' : '') + (selected ? ' bg-blue-500' : '')"
+    :class="
+      'w-32 h-32 border border-gray-400' +
+      (clickable ? ' cursor-pointer' : '') +
+      (selected ? ' bg-blue-500' : '')
+    "
     @click="onClick"
-  >
-  </div>
+  ></div>
 </template>
 
 <script setup>
-
 const props = defineProps({
   clickable: Boolean,
   selected: Boolean,
@@ -15,7 +17,7 @@ const props = defineProps({
 const emit = defineEmits(['cell-click'])
 function onClick() {
   if (props.clickable) {
-    emit('cell-click', !props.selected);
+    emit('cell-click', !props.selected)
   }
 }
 </script>
